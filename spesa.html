@@ -21,160 +21,72 @@
             border-radius: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
-        h1 {
+        h1, h3 {
             text-align: center;
-            color: #2a9d8f;
         }
-        .input-area {
-            display: flex;
-            gap: 10px;
+        h1 { color: #2a9d8f; }
+        h3 { color: #264653; margin-top: 0; }
+
+        /* Sezioni */
+        .input-area, .management-area {
             margin-bottom: 20px;
         }
-        #item-input {
-            flex-grow: 1;
-            padding: 10px;
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            font-size: 1em;
-            min-width: 0;
-        }
-        #add-button {
-            padding: 10px 20px;
-            background-color: #2a9d8f;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        #add-button:hover {
-            background-color: #264653;
-        }
-        #new-item-form {
-            background-color: #e9c46a;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            border: 2px dashed #f4a261;
-        }
-        .form-row {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-        }
-        .form-row label {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-row input, .form-row select {
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .form-buttons {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .form-buttons button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            color: white;
-        }
-        #save-item-button {
-            background-color: #2a9d8f;
-        }
-        #save-item-button:hover {
-            background-color: #264653;
-        }
-        #cancel-new-item-button {
-            background-color: #6c757d;
-        }
-        #cancel-new-item-button:hover {
-            background-color: #5a6268;
-        }
-        h2 {
-            border-bottom: 2px solid #e9ecef;
-            padding-bottom: 10px;
-            margin-top: 30px;
-            color: #264653;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            padding: 12px 5px;
-            border-bottom: 1px solid #f1f1f1;
-            display: flex;
-            align-items: center;
-            font-size: 1.1em;
-            word-break: break-word;
-        }
-        li:last-child {
-            border-bottom: none;
-        }
-        input[type="checkbox"] {
-            margin-right: 15px;
-            transform: scale(1.5);
-            cursor: pointer;
-            flex-shrink: 0;
-        }
-        .item-label {
-            flex-grow: 1;
-        }
-        .item-quantity {
-            font-style: italic;
-            color: #666;
-            margin-left: 10px;
-            font-size: 0.9em;
-        }
-        input[type="checkbox"]:checked ~ .item-label {
-            text-decoration: line-through;
-            color: #aaa;
-        }
-        .delete-btn {
-            background-color: transparent;
-            border: none;
-            color: #aaa;
-            font-size: 1.5em;
-            font-weight: bold;
-            cursor: pointer;
-            padding: 0 10px;
-            margin-left: 15px;
-            transition: color 0.2s;
-        }
-        .delete-btn:hover {
-            color: #e76f51;
-        }
-        .reset-area {
+        .management-area {
             text-align: center;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-        }
-        #reset-button {
-            background-color: #e76f51;
-            color: white;
-            border: none;
-            padding: 10px 25px;
+            padding: 20px;
+            background-color: #f8f9fa;
             border-radius: 8px;
-            cursor: pointer;
+            margin-top: 30px;
+        }
+        .management-area button {
+            margin: 5px;
+        }
+
+        /* Input e Pulsanti */
+        .input-area { display: flex; gap: 10px; }
+        #item-input { flex-grow: 1; padding: 10px; border: 2px solid #ccc; border-radius: 8px; font-size: 1em; min-width: 0; }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
             font-size: 1em;
+            cursor: pointer;
             transition: background-color 0.2s;
+            color: white;
         }
-        #reset-button:hover {
-            background-color: #d62828;
-        }
-        .hidden {
-            display: none;
-        }
+        #add-button { background-color: #2a9d8f; }
+        #add-button:hover { background-color: #264653; }
+
+        /* Form Nuovo Articolo */
+        #new-item-form { background-color: #e9c46a; padding: 20px; border-radius: 8px; margin-top: 20px; border: 2px dashed #f4a261; }
+        .form-row { display: flex; flex-direction: column; margin-bottom: 15px; }
+        .form-row label { margin-bottom: 5px; font-weight: bold; }
+        .form-row input, .form-row select { padding: 8px; border-radius: 5px; border: 1px solid #ccc; }
+        .form-buttons { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; }
+        #save-item-button { background-color: #2a9d8f; }
+        #save-item-button:hover { background-color: #264653; }
+        #cancel-new-item-button { background-color: #6c757d; }
+        #cancel-new-item-button:hover { background-color: #5a6268; }
+
+        /* Lista Spesa */
+        h2 { border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-top: 30px; color: #264653; }
+        ul { list-style: none; padding: 0; }
+        li { padding: 12px 5px; border-bottom: 1px solid #f1f1f1; display: flex; align-items: center; font-size: 1.1em; word-break: break-word; }
+        li:last-child { border-bottom: none; }
+        input[type="checkbox"] { margin-right: 15px; transform: scale(1.5); cursor: pointer; flex-shrink: 0; }
+        .item-label { flex-grow: 1; }
+        .item-quantity { font-style: italic; color: #666; margin-left: 10px; font-size: 0.9em; }
+        input[type="checkbox"]:checked ~ .item-label { text-decoration: line-through; color: #aaa; }
+        .delete-btn { background-color: transparent; border: none; color: #aaa; font-size: 1.5em; font-weight: bold; cursor: pointer; padding: 0 10px; margin-left: 15px; transition: color 0.2s; }
+        .delete-btn:hover { color: #e76f51; }
+
+        /* Pulsanti Gestione */
+        #backup-button { background-color: #007bff; }
+        #restore-button { background-color: #28a745; }
+        #reset-button { background-color: #e76f51; }
+        #reset-button:hover { background-color: #d62828; }
+        
+        .hidden { display: none; }
     </style>
 </head>
 <body>
@@ -188,7 +100,7 @@
         </div>
 
         <div id="new-item-form" class="hidden">
-            <h3 style="margin-top:0;">Aggiungi Nuovo Articolo</h3>
+            <h3>Aggiungi Nuovo Articolo</h3>
             <div class="form-row">
                 <label for="new-item-name">Nome Articolo</label>
                 <input type="text" id="new-item-name" disabled>
@@ -218,8 +130,12 @@
 
         <div id="shopping-list"></div>
 
-        <div class="reset-area">
-            <button id="reset-button">Reset Lista</button>
+        <div class="management-area">
+            <h3>Gestione Dati</h3>
+            <button id="backup-button">Backup Articoli</button>
+            <button id="restore-button">Ripristina Articoli</button>
+            <button id="reset-button">Reset Totale</button>
+            <input type="file" id="restore-input" class="hidden" accept=".json">
         </div>
 
     </div>
@@ -241,6 +157,9 @@
             const saveItemButton = document.getElementById('save-item-button');
             const cancelNewItemButton = document.getElementById('cancel-new-item-button');
             const resetButton = document.getElementById('reset-button');
+            const backupButton = document.getElementById('backup-button');
+            const restoreButton = document.getElementById('restore-button');
+            const restoreInput = document.getElementById('restore-input');
 
             // --- STATO DELL'APPLICAZIONE ---
             let knownItems = {};
@@ -266,8 +185,7 @@
                 knownItems = loadedKnownItems ? JSON.parse(loadedKnownItems) : { ...defaultKnownItems };
             }
 
-            // --- FUNZIONI LOGICHE E DI RENDERING ---
-
+            // --- RENDER ---
             function renderList() {
                 shoppingListDiv.innerHTML = '';
                 if (currentList.length === 0) {
@@ -300,14 +218,13 @@
                             item.checked = e.target.checked;
                             saveData();
                         });
-                        li.querySelector('.delete-btn').addEventListener('click', () => {
-                            handleDeleteItem(item);
-                        });
+                        li.querySelector('.delete-btn').addEventListener('click', () => handleDeleteItem(item));
                     });
                     shoppingListDiv.appendChild(ul);
                 });
             }
 
+            // --- LOGICA DI BUSINESS ---
             function handleDeleteItem(itemToDelete) {
                 currentList = currentList.filter(item => item.name !== itemToDelete.name);
                 const itemKey = itemToDelete.name.toLowerCase();
@@ -344,26 +261,21 @@
                 newItemForm.classList.remove('hidden');
                 newItemNameInput.value = itemName;
                 newItemQuantityInput.value = '1';
-                newItemDepartmentSelect.value = 'Altro'; // Default to 'Altro'
+                newItemDepartmentSelect.value = 'Altro';
                 newItemQuantityInput.focus();
             }
             
             // --- EVENT LISTENERS ---
-
             addButton.addEventListener('click', handleAddItem);
-            itemInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') { e.preventDefault(); handleAddItem(); }
-            });
+            itemInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddItem(); } });
 
             saveItemButton.addEventListener('click', () => {
                 const name = newItemNameInput.value;
                 const quantity = newItemQuantityInput.value || '1';
                 const department = newItemDepartmentSelect.value;
                 const nameClean = name.toLowerCase();
-
                 knownItems[nameClean] = { department };
                 currentList.push({ name, quantity, department, checked: false });
-
                 newItemForm.classList.add('hidden');
                 itemInput.value = '';
                 itemInput.focus();
@@ -378,11 +290,58 @@
             });
 
             resetButton.addEventListener('click', () => {
-                if (confirm('Sei sicuro di voler cancellare tutta la lista e la memoria degli articoli? L\'azione è irreversibile.')) {
+                if (confirm('Sei sicuro di voler cancellare TUTTI i dati (lista e articoli memorizzati)? L\'azione è irreversibile.')) {
                     localStorage.removeItem(LIST_STORAGE_KEY);
-localStorage.removeItem(KNOWN_ITEMS_STORAGE_KEY);
+                    localStorage.removeItem(KNOWN_ITEMS_STORAGE_KEY);
                     location.reload(); 
                 }
+            });
+
+            // --- NUOVI EVENT LISTENER PER BACKUP/RIPRISTINO ---
+
+            backupButton.addEventListener('click', () => {
+                const dataStr = JSON.stringify(knownItems, null, 2);
+                const dataBlob = new Blob([dataStr], {type: "application/json"});
+                const url = URL.createObjectURL(dataBlob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'lista_spesa_backup_articoli.json'; // Nome file fisso
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            });
+
+            restoreButton.addEventListener('click', () => {
+                restoreInput.click(); // Apre la finestra di dialogo per la selezione file
+            });
+
+            restoreInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const restoredKnownItems = JSON.parse(e.target.result);
+                        // Semplice validazione per vedere se è un oggetto non vuoto
+                        if (typeof restoredKnownItems === 'object' && restoredKnownItems !== null && Object.keys(restoredKnownItems).length > 0) {
+                            if (confirm('Sei sicuro di voler sovrascrivere la memoria articoli attuale con i dati del backup?')) {
+                                knownItems = restoredKnownItems;
+                                saveData();
+                                alert('Ripristino completato con successo!');
+                            }
+                        } else {
+                            alert('Il file di backup non è valido o è vuoto.');
+                        }
+                    } catch (error) {
+                        alert('Errore: Il file selezionato non è un file JSON valido.\n' + error.message);
+                    } finally {
+                        // Resetta l'input per permettere di ricaricare lo stesso file
+                        restoreInput.value = '';
+                    }
+                };
+                reader.readAsText(file);
             });
 
             // --- INIZIALIZZAZIONE ---
