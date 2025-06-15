@@ -5,55 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista della Spesa Persistente</title>
     <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f7f6;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 700px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 20px 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        h1, h3 {
-            text-align: center;
-        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 700px; margin: 0 auto; background-color: #ffffff; padding: 20px 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        h1, h3 { text-align: center; }
         h1 { color: #2a9d8f; }
         h3 { color: #264653; margin-top: 0; }
 
         /* Sezioni */
-        .input-area, .management-area {
-            margin-bottom: 20px;
-        }
-        .management-area {
-            text-align: center;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-            margin-top: 30px;
-        }
-        .management-area button {
-            margin: 5px;
-        }
+        .input-area, .management-area { margin-bottom: 20px; }
+        .management-area { text-align: center; padding: 20px; background-color: #f8f9fa; border-radius: 8px; margin-top: 30px; }
+        .management-area button { margin: 5px; }
 
         /* Input e Pulsanti */
         .input-area { display: flex; gap: 10px; }
         #item-input { flex-grow: 1; padding: 10px; border: 2px solid #ccc; border-radius: 8px; font-size: 1em; min-width: 0; }
-        button {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            color: white;
-        }
+        button { padding: 10px 20px; border: none; border-radius: 8px; font-size: 1em; cursor: pointer; transition: background-color 0.2s; color: white; }
         #add-button { background-color: #2a9d8f; }
         #add-button:hover { background-color: #264653; }
 
@@ -64,9 +30,7 @@
         .form-row input, .form-row select { padding: 8px; border-radius: 5px; border: 1px solid #ccc; }
         .form-buttons { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; }
         #save-item-button { background-color: #2a9d8f; }
-        #save-item-button:hover { background-color: #264653; }
         #cancel-new-item-button { background-color: #6c757d; }
-        #cancel-new-item-button:hover { background-color: #5a6268; }
 
         /* Lista Spesa */
         h2 { border-bottom: 2px solid #e9ecef; padding-bottom: 10px; margin-top: 30px; color: #264653; }
@@ -77,14 +41,22 @@
         .item-label { flex-grow: 1; }
         .item-quantity { font-style: italic; color: #666; margin-left: 10px; font-size: 0.9em; }
         input[type="checkbox"]:checked ~ .item-label { text-decoration: line-through; color: #aaa; }
-        .delete-btn { background-color: transparent; border: none; color: #aaa; font-size: 1.5em; font-weight: bold; cursor: pointer; padding: 0 10px; margin-left: 15px; transition: color 0.2s; }
+        .delete-btn { background: transparent; border: none; color: #aaa; font-size: 1.5em; font-weight: bold; cursor: pointer; padding: 0 10px; margin-left: 15px; transition: color 0.2s; }
         .delete-btn:hover { color: #e76f51; }
 
         /* Pulsanti Gestione */
+        #manage-departments-button { background-color: #f4a261; }
         #backup-button { background-color: #007bff; }
         #restore-button { background-color: #28a745; }
         #reset-button { background-color: #e76f51; }
-        #reset-button:hover { background-color: #d62828; }
+        
+        /* Modal Gestione Reparti */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: white; padding: 25px; border-radius: 10px; width: 90%; max-width: 500px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        #department-list { max-height: 200px; overflow-y: auto; margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 5px; }
+        #department-list li { justify-content: space-between; }
+        .add-department-form { display: flex; gap: 10px; }
+        .add-department-form input { flex-grow: 1; }
         
         .hidden { display: none; }
     </style>
@@ -93,7 +65,6 @@
 
     <div class="container">
         <h1>Lista della Spesa</h1>
-
         <div class="input-area">
             <input type="text" id="item-input" placeholder="Aggiungi un articolo..." maxlength="50">
             <button id="add-button">Aggiungi</button>
@@ -106,21 +77,12 @@
                 <input type="text" id="new-item-name" disabled>
             </div>
             <div class="form-row">
-                <label for="new-item-quantity">Quantità (es. 1kg, 2, 500g)</label>
+                <label for="new-item-quantity">Quantità</label>
                 <input type="text" id="new-item-quantity" placeholder="Quantità" maxlength="20">
             </div>
             <div class="form-row">
                 <label for="new-item-department">Reparto</label>
-                <select id="new-item-department">
-                    <option value="Frutta e Verdura">Frutta e Verdura</option>
-                    <option value="Latticini e Uova">Latticini e Uova</option>
-                    <option value="Carne e Pesce">Carne e Pesce</option>
-                    <option value="Prodotti da Forno">Prodotti da Forno</option>
-                    <option value="Dispensa">Dispensa</option>
-                    <option value="Bevande">Bevande</option>
-                    <option value="Igiene e Casa">Igiene e Casa</option>
-                    <option value="Altro">Altro</option>
-                </select>
+                <select id="new-item-department"></select>
             </div>
             <div class="form-buttons">
                 <button type="button" id="cancel-new-item-button">Annulla</button>
@@ -132,12 +94,26 @@
 
         <div class="management-area">
             <h3>Gestione Dati</h3>
+            <button id="manage-departments-button">Gestisci Reparti</button>
             <button id="backup-button">Backup Articoli</button>
             <button id="restore-button">Ripristina Articoli</button>
             <button id="reset-button">Reset Totale</button>
             <input type="file" id="restore-input" class="hidden" accept=".json">
         </div>
+    </div>
 
+    <div id="department-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Gestisci Reparti</h3>
+            <ul id="department-list"></ul>
+            <div class="add-department-form">
+                <input type="text" id="new-department-name" placeholder="Nome nuovo reparto...">
+                <button id="add-department-button">Aggiungi</button>
+            </div>
+            <div class="form-buttons">
+                <button id="close-modal-button">Chiudi</button>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -145,6 +121,7 @@
             // --- COSTANTI ---
             const LIST_STORAGE_KEY = 'shoppingList_currentList';
             const KNOWN_ITEMS_STORAGE_KEY = 'shoppingList_knownItems';
+            const DEPARTMENTS_STORAGE_KEY = 'shoppingList_departments';
 
             // --- ELEMENTI DEL DOM ---
             const itemInput = document.getElementById('item-input');
@@ -160,32 +137,47 @@
             const backupButton = document.getElementById('backup-button');
             const restoreButton = document.getElementById('restore-button');
             const restoreInput = document.getElementById('restore-input');
+            const manageDepartmentsButton = document.getElementById('manage-departments-button');
+            const departmentModal = document.getElementById('department-modal');
+            const closeModalButton = document.getElementById('close-modal-button');
+            const departmentListUl = document.getElementById('department-list');
+            const newDepartmentNameInput = document.getElementById('new-department-name');
+            const addDepartmentButton = document.getElementById('add-department-button');
 
             // --- STATO DELL'APPLICAZIONE ---
             let knownItems = {};
             let currentList = [];
-
-            const defaultKnownItems = {
-                'mele': { department: 'Frutta e Verdura' }, 'banane': { department: 'Frutta e Verdura' }, 'insalata': { department: 'Frutta e Verdura' },
-                'latte': { department: 'Latticini e Uova' }, 'uova': { department: 'Latticini e Uova' }, 'yogurt': { department: 'Latticini e Uova' },
-                'pane': { department: 'Prodotti da Forno' }, 'pasta': { department: 'Dispensa' }, 'olio': { department: 'Dispensa' }, 'acqua': { department: 'Bevande' }
-            };
+            let departments = [];
+            const defaultDepartments = ['Frutta e Verdura', 'Latticini e Uova', 'Carne e Pesce', 'Prodotti da Forno', 'Dispensa', 'Bevande', 'Igiene e Casa', 'Altro'];
 
             // --- FUNZIONI DI GESTIONE DATI ---
-            
             function saveData() {
                 localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(currentList));
                 localStorage.setItem(KNOWN_ITEMS_STORAGE_KEY, JSON.stringify(knownItems));
+                localStorage.setItem(DEPARTMENTS_STORAGE_KEY, JSON.stringify(departments));
             }
 
             function loadData() {
                 const loadedList = localStorage.getItem(LIST_STORAGE_KEY);
                 const loadedKnownItems = localStorage.getItem(KNOWN_ITEMS_STORAGE_KEY);
+                const loadedDepartments = localStorage.getItem(DEPARTMENTS_STORAGE_KEY);
+                
                 currentList = loadedList ? JSON.parse(loadedList) : [];
-                knownItems = loadedKnownItems ? JSON.parse(loadedKnownItems) : { ...defaultKnownItems };
+                knownItems = loadedKnownItems ? JSON.parse(loadedKnownItems) : {};
+                departments = loadedDepartments ? JSON.parse(loadedDepartments) : [...defaultDepartments];
             }
 
-            // --- RENDER ---
+            // --- FUNZIONI DI RENDER E POPOLAMENTO UI ---
+            function populateDepartmentDropdowns() {
+                newItemDepartmentSelect.innerHTML = '';
+                departments.forEach(dept => {
+                    const option = document.createElement('option');
+                    option.value = dept;
+                    option.textContent = dept;
+                    newItemDepartmentSelect.appendChild(option);
+                });
+            }
+
             function renderList() {
                 shoppingListDiv.innerHTML = '';
                 if (currentList.length === 0) {
@@ -197,34 +189,36 @@
                     return acc;
                 }, {});
 
-                Object.keys(groupedByDept).sort().forEach(department => {
-                    const departmentTitle = document.createElement('h2');
-                    departmentTitle.textContent = department;
-                    shoppingListDiv.appendChild(departmentTitle);
-                    const ul = document.createElement('ul');
-                    groupedByDept[department].forEach(item => {
-                        const li = document.createElement('li');
-                        const uniqueId = `item-${item.name.replace(/\s+/g, '-')}`;
-                        li.innerHTML = `
-                            <input type="checkbox" id="${uniqueId}" ${item.checked ? 'checked' : ''}>
-                            <label for="${uniqueId}" class="item-label">
-                                <span class="item-name">${item.name}</span>
-                                <span class="item-quantity">(${item.quantity})</span>
-                            </label>
-                            <button class="delete-btn" title="Rimuovi articolo">&times;</button>
-                        `;
-                        ul.appendChild(li);
-                        li.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
-                            item.checked = e.target.checked;
-                            saveData();
+                departments.forEach(dept => {
+                    if (groupedByDept[dept]) {
+                        const departmentTitle = document.createElement('h2');
+                        departmentTitle.textContent = dept;
+                        shoppingListDiv.appendChild(departmentTitle);
+                        const ul = document.createElement('ul');
+                        groupedByDept[dept].forEach(item => {
+                            const li = document.createElement('li');
+                            const uniqueId = `item-${item.name.replace(/\s+/g, '-')}`;
+                            li.innerHTML = `
+                                <input type="checkbox" id="${uniqueId}" ${item.checked ? 'checked' : ''}>
+                                <label for="${uniqueId}" class="item-label">
+                                    <span class="item-name">${item.name}</span>
+                                    <span class="item-quantity">(${item.quantity})</span>
+                                </label>
+                                <button class="delete-btn" title="Rimuovi articolo">&times;</button>
+                            `;
+                            ul.appendChild(li);
+                            li.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
+                                item.checked = e.target.checked;
+                                saveData();
+                            });
+                            li.querySelector('.delete-btn').addEventListener('click', () => handleDeleteItem(item));
                         });
-                        li.querySelector('.delete-btn').addEventListener('click', () => handleDeleteItem(item));
-                    });
-                    shoppingListDiv.appendChild(ul);
+                        shoppingListDiv.appendChild(ul);
+                    }
                 });
             }
 
-            // --- LOGICA DI BUSINESS ---
+            // --- LOGICA DI BUSINESS E GESTIONE EVENTI ---
             function handleDeleteItem(itemToDelete) {
                 currentList = currentList.filter(item => item.name !== itemToDelete.name);
                 const itemKey = itemToDelete.name.toLowerCase();
@@ -265,7 +259,7 @@
                 newItemQuantityInput.focus();
             }
             
-            // --- EVENT LISTENERS ---
+            // --- LISTENERS PRINCIPALI ---
             addButton.addEventListener('click', handleAddItem);
             itemInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddItem(); } });
 
@@ -290,54 +284,105 @@
             });
 
             resetButton.addEventListener('click', () => {
-                if (confirm('Sei sicuro di voler cancellare TUTTI i dati (lista e articoli memorizzati)? L\'azione è irreversibile.')) {
-                    localStorage.removeItem(LIST_STORAGE_KEY);
-                    localStorage.removeItem(KNOWN_ITEMS_STORAGE_KEY);
+                if (confirm('Sei sicuro di voler cancellare TUTTI i dati (lista, articoli e reparti)? L\'azione è irreversibile.')) {
+                    localStorage.clear();
                     location.reload(); 
                 }
             });
 
-            // --- NUOVI EVENT LISTENER PER BACKUP/RIPRISTINO ---
+            // --- LOGICA GESTIONE REPARTI (MODAL) ---
+            function renderDepartmentList() {
+                departmentListUl.innerHTML = '';
+                departments.forEach(dept => {
+                    const li = document.createElement('li');
+                    li.textContent = dept;
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'delete-btn';
+                    deleteButton.innerHTML = '&times;';
+                    deleteButton.dataset.department = dept;
+                    li.appendChild(deleteButton);
+                    departmentListUl.appendChild(li);
+                });
+            }
 
+            manageDepartmentsButton.addEventListener('click', () => {
+                renderDepartmentList();
+                departmentModal.classList.remove('hidden');
+            });
+            closeModalButton.addEventListener('click', () => departmentModal.classList.add('hidden'));
+
+            addDepartmentButton.addEventListener('click', () => {
+                const newDeptName = newDepartmentNameInput.value.trim();
+                if (newDeptName === '') return;
+                if (departments.some(d => d.toLowerCase() === newDeptName.toLowerCase())) {
+                    alert('Questo reparto esiste già.');
+                    return;
+                }
+                departments.push(newDeptName);
+                departments.sort((a, b) => a.localeCompare(b));
+                saveData();
+                renderDepartmentList();
+                populateDepartmentDropdowns();
+                newDepartmentNameInput.value = '';
+            });
+
+            departmentListUl.addEventListener('click', (e) => {
+                if (e.target.classList.contains('delete-btn')) {
+                    const deptToDelete = e.target.dataset.department;
+                    const isDeptInUse = currentList.some(item => item.department === deptToDelete) || Object.values(knownItems).some(item => item.department === deptToDelete);
+
+                    if (isDeptInUse) {
+                        alert('Impossibile eliminare il reparto: è utilizzato da uno o più articoli.');
+                        return;
+                    }
+
+                    if(departments.length <= 1) {
+                        alert('Devi mantenere almeno un reparto.');
+                        return;
+                    }
+
+                    departments = departments.filter(d => d !== deptToDelete);
+                    saveData();
+                    renderDepartmentList();
+                    populateDepartmentDropdowns();
+                }
+            });
+
+            // --- GESTIONE BACKUP/RESTORE ---
             backupButton.addEventListener('click', () => {
-                const dataStr = JSON.stringify(knownItems, null, 2);
+                const dataToBackup = { knownItems, departments };
+                const dataStr = JSON.stringify(dataToBackup, null, 2);
                 const dataBlob = new Blob([dataStr], {type: "application/json"});
                 const url = URL.createObjectURL(dataBlob);
                 const link = document.createElement('a');
                 link.href = url;
-                link.download = 'lista_spesa_backup_articoli.json'; // Nome file fisso
-                document.body.appendChild(link);
+                link.download = 'lista_spesa_backup_dati.json';
                 link.click();
-                document.body.removeChild(link);
                 URL.revokeObjectURL(url);
             });
 
-            restoreButton.addEventListener('click', () => {
-                restoreInput.click(); // Apre la finestra di dialogo per la selezione file
-            });
-
+            restoreButton.addEventListener('click', () => restoreInput.click());
             restoreInput.addEventListener('change', (event) => {
                 const file = event.target.files[0];
                 if (!file) return;
-
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     try {
-                        const restoredKnownItems = JSON.parse(e.target.result);
-                        // Semplice validazione per vedere se è un oggetto non vuoto
-                        if (typeof restoredKnownItems === 'object' && restoredKnownItems !== null && Object.keys(restoredKnownItems).length > 0) {
-                            if (confirm('Sei sicuro di voler sovrascrivere la memoria articoli attuale con i dati del backup?')) {
-                                knownItems = restoredKnownItems;
+                        const restoredData = JSON.parse(e.target.result);
+                        if (typeof restoredData === 'object' && restoredData.knownItems && restoredData.departments) {
+                            if (confirm('Sei sicuro di voler sovrascrivere la memoria articoli e la lista reparti con i dati del backup?')) {
+                                knownItems = restoredData.knownItems;
+                                departments = restoredData.departments;
                                 saveData();
+                                populateDepartmentDropdowns();
                                 alert('Ripristino completato con successo!');
                             }
                         } else {
-                            alert('Il file di backup non è valido o è vuoto.');
+                            alert('Il file di backup non è valido o è incompleto.');
                         }
                     } catch (error) {
-                        alert('Errore: Il file selezionato non è un file JSON valido.\n' + error.message);
+                        alert('Errore: Il file selezionato non è un file JSON valido.');
                     } finally {
-                        // Resetta l'input per permettere di ricaricare lo stesso file
                         restoreInput.value = '';
                     }
                 };
@@ -346,6 +391,7 @@
 
             // --- INIZIALIZZAZIONE ---
             loadData();
+            populateDepartmentDropdowns();
             renderList();
         });
     </script>
