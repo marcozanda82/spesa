@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista della Spesa Persistente</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2a9d8f;
+        }
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        #item-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 1em;
+            min-width: 0;
+        }
+        #add-button {
+            padding: 10px 20px;
+            background-color: #2a9d8f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #add-button:hover {
+            background-color: #264653;
+        }
+        #new-item-form {
+            background-color: #e9c46a;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border: 2px dashed #f4a261;
+        }
+        .form-row {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        .form-row label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-row input, .form-row select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .form-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            color: white;
+        }
+        #save-item-button {
+            background-color: #2a9d8f;
+        }
+        #save-item-button:hover {
+            background-color: #264653;
+        }
+        #cancel-new-item-button {
+            background-color: #6c757d;
+        }
+        #cancel-new-item-button:hover {
+            background-color: #5a6268;
+        }
+        h2 {
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            color: #264653;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            padding: 12px 5px;
+            border-bottom: 1px solid #f1f1f1;
+            display: flex;
+            align-items: center;
+            font-size: 1.1em;
+            word-break: break-word;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        input[type="checkbox"] {
+            margin-right: 15px;
+            transform: scale(1.5);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .item-label {
+            flex-grow: 1;
+        }
+        .item-quantity {
+            font-style: italic;
+            color: #666;
+            margin-left: 10px;
+            font-size: 0.9em;
+        }
+        input[type="checkbox"]:checked ~ .item-label {
+            text-decoration: line-through;
+            color: #aaa;
+        }
+        .delete-btn {
+            background-color: transparent;
+            border: none;
+            color: #aaa;
+            font-size: 1.5em;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0 10px;
+            margin-left: 15px;
+            transition: color 0.2s;
+        }
+        .delete-btn:hover {
+            color: #e76f51;
+        }
+        .reset-area {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        #reset-button {
+            background-color: #e76f51;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+        #reset-button:hover {
+            background-color: #d62828;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Lista della Spesa</h1>
+
+        <div class="input-area">
+            <input type="text" id="item-input" placeholder="Aggiungi un articolo..." maxlength="50">
+            <button id="add-button">Aggiungi</button>
+        </div>
+
+        <div id="new-item-form" class="hidden">
+            <h3 style="margin-top:0;">Aggiungi Nuovo Articolo</h3>
+            <div class="form-row">
+                <label for="new-item-name">Nome Articolo</label>
+                <input type="text" id="new-item-name" disabled>
+            </div>
+            <div class="form-row">
+                <label for="new-item-quantity">Quantità (es. 1kg, 2, 500g)</label>
+                <input type="text" id="new-item-quantity" placeholder="Quantità" maxlength="20">
+            </div>
+            <div class="form-row">
+                <label for="new-item-department">Reparto</label>
+                <select id="new-item-department">
+                    <option value="Frutta e Verdura">Frutta e Verdura</option>
+                    <option value="Latticini e Uova">Latticini e Uova</option>
+                    <option value="Carne e Pesce">Carne e Pesce</option>
+                    <option value="Prodotti da Forno">Prodotti da Forno</option>
+                    <option value="Dispensa">Dispensa</option>
+                    <option value="Bevande">Bevande</option>
+                    <option value="Igiene e Casa">Igiene e Casa</option>
+                    <option value="Altro">Altro</option>
+                </select>
+            </div>
+            <div class="form-buttons">
+                <button type="button" id="cancel-new-item-button">Annulla</button>
+                <button id="save-item-button">Salva Articolo</button>
+            </div>
+        </div>
+
+        <div id="shopping-list"></div>
+
+        <div class="reset-area">
+            <button id="reset-button">Reset Lista</button>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- COSTANTI ---
+            const LIST_STORAGE_KEY = 'shoppingList_currentList';
+            const KNOWN_ITEMS_STORAGE_KEY = 'shoppingList_knownItems';
+
+            // --- ELEMENTI DEL DOM ---
+            const itemInput = document.getElementById('item-input');
+            const addButton = document.getElementById('add-button');
+            const shoppingListDiv = document.getElementById('shopping-list');
+            const newItemForm = document.getElementById('new-item-form');
+            const newItemNameInput = document.getElementById('new-item-name');
+            const newItemQuantityInput = document.getElementById('new-item-quantity');
+            const newItemDepartmentSelect = document.getElementById('new-item-department');
+            const saveItemButton = document.getElementById('save-item-button');
+            const cancelNewItemButton = document.getElementById('cancel-new-item-button');
+            const resetButton = document.getElementById('reset-button');
+
+            // --- STATO DELL'APPLICAZIONE ---
+            let knownItems = {};
+            let currentList = [];
+
+            const defaultKnownItems = {
+                'mele': { department: 'Frutta e Verdura' }, 'banane': { department: 'Frutta e Verdura' }, 'insalata': { department: 'Frutta e Verdura' },
+                'latte': { department: 'Latticini e Uova' }, 'uova': { department: 'Latticini e Uova' }, 'yogurt': { department: 'Latticini e Uova' },
+                'pane': { department: 'Prodotti da Forno' }, 'pasta': { department: 'Dispensa' }, 'olio': { department: 'Dispensa' }, 'acqua': { department: 'Bevande' }
+            };
+
+            // --- FUNZIONI DI GESTIONE DATI ---
+            
+            function saveData() {
+                localStorage.setItem(LIST_STORAGE_KEY, JSON.stringify(currentList));
+                localStorage.setItem(KNOWN_ITEMS_STORAGE_KEY, JSON.stringify(knownItems));
+            }
+
+            function loadData() {
+                const loadedList = localStorage.getItem(LIST_STORAGE_KEY);
+                const loadedKnownItems = localStorage.getItem(KNOWN_ITEMS_STORAGE_KEY);
+                currentList = loadedList ? JSON.parse(loadedList) : [];
+                knownItems = loadedKnownItems ? JSON.parse(loadedKnownItems) : { ...defaultKnownItems };
+            }
+
+            // --- FUNZIONI LOGICHE E DI RENDERING ---
+
+            function renderList() {
+                shoppingListDiv.innerHTML = '';
+                if (currentList.length === 0) {
+                    shoppingListDiv.innerHTML = '<p style="text-align:center; color:#888;">La tua lista della spesa è vuota.</p>';
+                    return;
+                }
+                const groupedByDept = currentList.reduce((acc, item) => {
+                    (acc[item.department] = acc[item.department] || []).push(item);
+                    return acc;
+                }, {});
+
+                Object.keys(groupedByDept).sort().forEach(department => {
+                    const departmentTitle = document.createElement('h2');
+                    departmentTitle.textContent = department;
+                    shoppingListDiv.appendChild(departmentTitle);
+                    const ul = document.createElement('ul');
+                    groupedByDept[department].forEach(item => {
+                        const li = document.createElement('li');
+                        const uniqueId = `item-${item.name.replace(/\s+/g, '-')}`;
+                        li.innerHTML = `
+                            <input type="checkbox" id="${uniqueId}" ${item.checked ? 'checked' : ''}>
+                            <label for="${uniqueId}" class="item-label">
+                                <span class="item-name">${item.name}</span>
+                                <span class="item-quantity">(${item.quantity})</span>
+                            </label>
+                            <button class="delete-btn" title="Rimuovi articolo">&times;</button>
+                        `;
+                        ul.appendChild(li);
+                        li.querySelector('input[type="checkbox"]').addEventListener('change', (e) => {
+                            item.checked = e.target.checked;
+                            saveData();
+                        });
+                        li.querySelector('.delete-btn').addEventListener('click', () => {
+                            handleDeleteItem(item);
+                        });
+                    });
+                    shoppingListDiv.appendChild(ul);
+                });
+            }
+
+            function handleDeleteItem(itemToDelete) {
+                currentList = currentList.filter(item => item.name !== itemToDelete.name);
+                const itemKey = itemToDelete.name.toLowerCase();
+                if (knownItems[itemKey] && confirm(`Vuoi rimuovere "${itemToDelete.name}" anche dalla memoria degli articoli?`)) {
+                    delete knownItems[itemKey];
+                }
+                saveData();
+                renderList();
+            }
+
+            function handleAddItem() {
+                const itemNameRaw = itemInput.value.trim();
+                if (itemNameRaw === '') return;
+                const itemNameClean = itemNameRaw.toLowerCase();
+                const itemNameCapitalized = itemNameRaw.charAt(0).toUpperCase() + itemNameRaw.slice(1).toLowerCase();
+                if (currentList.some(item => item.name.toLowerCase() === itemNameClean)) {
+                    alert('Questo articolo è già nella lista.');
+                    itemInput.value = '';
+                    return;
+                }
+                if (knownItems[itemNameClean]) {
+                    const { department } = knownItems[itemNameClean];
+                    currentList.push({ name: itemNameCapitalized, quantity: '1', department, checked: false });
+                    saveData();
+                    renderList();
+                    itemInput.value = '';
+                    itemInput.focus();
+                } else {
+                    showNewItemForm(itemNameCapitalized);
+                }
+            }
+
+            function showNewItemForm(itemName) {
+                newItemForm.classList.remove('hidden');
+                newItemNameInput.value = itemName;
+                newItemQuantityInput.value = '1';
+                newItemDepartmentSelect.value = 'Altro'; // Default to 'Altro'
+                newItemQuantityInput.focus();
+            }
+            
+            // --- EVENT LISTENERS ---
+
+            addButton.addEventListener('click', handleAddItem);
+            itemInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') { e.preventDefault(); handleAddItem(); }
+            });
+
+            saveItemButton.addEventListener('click', () => {
+                const name = newItemNameInput.value;
+                const quantity = newItemQuantityInput.value || '1';
+                const department = newItemDepartmentSelect.value;
+                const nameClean = name.toLowerCase();
+
+                knownItems[nameClean] = { department };
+                currentList.push({ name, quantity, department, checked: false });
+
+                newItemForm.classList.add('hidden');
+                itemInput.value = '';
+                itemInput.focus();
+                saveData();
+                renderList();
+            });
+
+            cancelNewItemButton.addEventListener('click', () => {
+                newItemForm.classList.add('hidden');
+                itemInput.value = '';
+                itemInput.focus();
+            });
+
+            resetButton.addEventListener('click', () => {
+                if (confirm('Sei sicuro di voler cancellare tutta la lista e la memoria degli articoli? L\'azione è irreversibile.')) {
+                    localStorage.removeItem(LIST_STORAGE_KEY);
+localStorage.removeItem(KNOWN_ITEMS_STORAGE_KEY);
+                    location.reload(); 
+                }
+            });
+
+            // --- INIZIALIZZAZIONE ---
+            loadData();
+            renderList();
+        });
+    </script>
+</body>
+</html>
