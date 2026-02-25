@@ -1,0 +1,92 @@
+[
+  {
+    "desc": "Farro perlato, crudo",
+    "kcal": 353, "prot": 14.6, "carb": 69.3, "zuccheri": 2.4,
+    "fatTotal": 2.4, "fatSat": 0.0, "fatTrans": 0.0, "fatMono": 0.0, "fatPoly": 0.0,
+    "omega3": 0.048, "omega6": 0.96, "fibreTotali": 6.5, "fibreSolubili": 0.96, "fibreInsolubili": 5.5,
+    "sale": 0.025, "na": 10, "mg": 112, "k": 407, "vitc": 3.5, "ca": 35, "fe": 1.9, "zn": 2.6, "cu": 0.39, "p": 387,
+    "vitA": 27, "vitB12": 0.0, "vitD": 0.0, "vitE": 1.62, "vitK": 0.0, "b9": 31.0, "b2": 0.12, "b6": 0.0,
+    "leu": 1.075, "iso": 0.587, "val": 0.771, "lys": 0.444, "met": 0.293, "phe": 0.73, "thr": 0.437, "trp": 0.191, "his": 0.359
+  },
+  {
+    "desc": "Farro perlato, cotto, bollito",
+    "kcal": 178, "prot": 6.2, "carb": 37.3, "zuccheri": 0.9,
+    "fatTotal": 1.0, "fatSat": 0.0, "fatTrans": 0.0, "fatMono": 0.0, "fatPoly": 0.0,
+    "omega3": 0.02, "omega6": 0.4, "fibreTotali": 2.1, "fibreSolubili": 0.0, "fibreInsolubili": 0.0,
+    "sale": 0.003, "na": 1, "mg": 23, "k": 50, "vitc": 3.5, "ca": 15, "fe": 0.6, "zn": 0.61, "cu": 0.15, "p": 71,
+    "vitA": 27, "vitB12": 0.0, "vitD": 0.0, "vitE": 1.62, "vitK": 0.0, "b9": 4.41, "b2": 0.12, "b6": 0.0,
+    "leu": 0.434, "iso": 0.236, "val": 0.298, "lys": 0.186, "met": 0.112, "phe": 0.31, "thr": 0.198, "trp": 0.068, "his": 0.136
+  },
+  {
+    "desc": "Frumento duro",
+    "kcal": 332, "prot": 13.0, "carb": 62.5, "zuccheri": 3.2,
+    "fatTotal": 2.9, "fatSat": 0.0, "fatTrans": 0.0, "fatMono": 17.01, "fatPoly": 61.41,
+    "omega3": 4.72, "omega6": 56.68, "fibreTotali": 9.8, "fibreSolubili": 0.0, "fibreInsolubili": 0.0,
+    "sale": 0.18, "na": 72, "mg": 160, "k": 494, "vitc": 3.5, "ca": 30, "fe": 3.6, "zn": 2.9, "cu": 0.4, "p": 330,
+    "vitA": 2, "vitB12": 0.0, "vitD": 0.0, "vitE": 1.62, "vitK": 0.0, "b9": 40.0, "b2": 0.15, "b6": 0.0,
+    "leu": 0.91, "iso": 0.494, "val": 0.624, "lys": 0.39, "met": 0.234, "phe": 0.65, "thr": 0.416, "trp": 0.143, "his": 0.286
+  },
+  {
+    "desc": "Frumento tenero",
+    "kcal": 336, "prot": 12.3, "carb": 65.2, "zuccheri": 3.3,
+    "fatTotal": 2.6, "fatSat": 0.0, "fatTrans": 0.0, "fatMono": 11.87, "fatPoly": 65.06,
+    "omega3": 3.27, "omega6": 61.78, "fibreTotali": 9.7, "fibreSolubili": 0.0, "fibreInsolubili": 0.0,
+    "sale": 0.18, "na": 72, "mg": 44, "k": 198, "vitc": 3.5, "ca": 35, "fe": 3.3, "zn": 3.1, "cu": 0.31, "p": 304,
+    "vitA": 5, "vitB12": 0.0, "vitD": 0.0, "vitE": 1.62, "vitK": 0.0, "b9": 39.0, "b2": 0.14, "b6": 0.0,
+    "leu": 0.852, "iso": 0.449, "val": 0.576, "lys": 0.36, "met": 0.197, "phe": 0.573, "thr": 0.381, "trp": 0.134, "his": 0.282
+  },
+  {
+    "desc": "Couscous, crudo",
+    "kcal": 361, "prot": 13.7, "carb": 76.5, "zuccheri": 2.7,
+    "fatTotal": 1.1, "fatSat": 0.0, "fatTrans": 0.0, "fatMono": 0.0, "fatPoly": 0.0,
+    "omega3": 0.022, "omega6": 0.44, "fibreTotali": 4.5, "fibreSolubili": 0.0, "fibreInsolubili": 0.0,
+    "sale": 0.025, "na": 10, "mg": 52, "k": 247, "vitc": 3.5, "ca": 24, "fe": 1.9, "zn": 1.4, "cu": 0.31, "p": 195,
+    "vitA": 27, "vitB12": 0.0, "vitD": 0.0, "vitE": 1.62, "vitK": 0.0, "b9": 4.41, "b2": 0.08, "b6": 0.0,
+    "leu": 0.959, "iso": 0.521, "val": 0.658, "lys": 0.411, "met": 0.247, "phe": 0.685, "thr": 0.438, "trp": 0.151, "his": 0.301
+  },
+  {
+    "desc": "Grano saraceno",
+    "kcal": 329, "prot": 12.4, "carb": 61.2, "zuccheri": 0.0,
+    "fatTotal": 3.3, "fatSat": 0.0, "fatTrans": 0.0, "fatMono": 37.04, "fatPoly": 40.07,
+    "omega3": 5.72, "omega6": 34.34, "fibreTotali": 10.0, "fibreSolubili": 1.72, "fibreInsolubili": 8.35,
+    "sale": 0.003, "na": 1, "mg": 44, "k": 450, "vitc": 3.5, "ca": 110, "fe": 4.0, "zn": 0.67, "cu": 0.15, "p": 330,
+    "vitA": 27, "vitB12": 0.0, "vitD": 0.0, "vitE": 1.62, "vitK": 0.0, "b9": 24.0, "b2": 0.08, "b6": 0.0,
+    "leu": 0.837, "iso": 0.477, "val": 0.665, "lys": 0.728, "met": 0.301, "phe": 0.58, "thr": 0.459, "trp": 0.136, "his": 0.305
+  },
+  {
+    "desc": "Mais",
+    "kcal": 357, "prot": 9.2, "carb": 75.1, "zuccheri": 2.5,
+    "fatTotal": 3.8, "fatSat": 0.0, "fatTrans": 0.0, "fatMono": 27.92, "fatPoly": 53.59,
+    "omega3": 8.02, "omega6": 45.57, "fibreTotali": 2.0, "fibreSolubili": 0.0, "fibreInsolubili": 0.0,
+    "sale": 0.087, "na": 35, "mg": 120, "k": 287, "vitc": 3.5, "ca": 15, "fe": 2.4, "zn": 2.21, "cu": 0.31, "p": 256,
+    "vitA": 62, "vitB12": 0.0, "vitD": 0.0, "vitE": 1.62, "vitK": 0.0, "b9": 4.41, "b2": 0.2, "b6": 0.0,
+    "leu": 1.168, "iso": 0.357, "val": 0.482, "lys": 0.261, "met": 0.194, "phe": 0.481, "thr": 0.342, "trp": 0.063, "his": 0.268
+  },
+  {
+    "desc": "Quinoa, cruda",
+    "kcal": 376, "prot": 15.4, "carb": 57.8, "zuccheri": 5.3,
+    "fatTotal": 8.1, "fatSat": 0.0, "fatTrans": 0.0, "fatMono": 49.28, "fatPoly": 16.73,
+    "omega3": 0.35, "omega6": 13.03, "fibreTotali": 12.2, "fibreSolubili": 0.0, "fibreInsolubili": 0.0,
+    "sale": 0.0, "na": 0, "mg": 189, "k": 655, "vitc": 3.5, "ca": 46, "fe": 3.6, "zn": 2.74, "cu": 0.51, "p": 438,
+    "vitA": 27, "vitB12": 0.0, "vitD": 0.0, "vitE": 1.62, "vitK": 0.0, "b9": 20.0, "b2": 0.08, "b6": 0.0,
+    "leu": 1.078, "iso": 0.585, "val": 0.739, "lys": 0.462, "met": 0.277, "phe": 0.77, "thr": 0.493, "trp": 0.169, "his": 0.339
+  },
+  {
+    "desc": "Riso, integrale",
+    "kcal": 341, "prot": 7.5, "carb": 77.4, "zuccheri": 1.2,
+    "fatTotal": 1.9, "fatSat": 0.0, "fatTrans": 0.0, "fatMono": 0.0, "fatPoly": 0.0,
+    "omega3": 0.038, "omega6": 0.76, "fibreTotali": 1.9, "fibreSolubili": 0.12, "fibreInsolubili": 1.8,
+    "sale": 0.022, "na": 9, "mg": 44, "k": 214, "vitc": 3.5, "ca": 32, "fe": 1.6, "zn": 0.67, "cu": 0.15, "p": 221,
+    "vitA": 27, "vitB12": 0.0, "vitD": 0.0, "vitE": 0.7, "vitK": 0.0, "b9": 4.41, "b2": 0.05, "b6": 0.0,
+    "leu": 0.525, "iso": 0.285, "val": 0.36, "lys": 0.225, "met": 0.135, "phe": 0.375, "thr": 0.24, "trp": 0.083, "his": 0.165
+  },
+  {
+    "desc": "Ceci, secchi, crudi",
+    "kcal": 334, "prot": 20.9, "carb": 46.9, "zuccheri": 3.7,
+    "fatTotal": 6.3, "fatSat": 0.0, "fatTrans": 0.0, "fatMono": 26.6, "fatPoly": 62.0,
+    "omega3": 3.91, "omega6": 58.09, "fibreTotali": 13.6, "fibreSolubili": 2.22, "fibreInsolubili": 11.33,
+    "sale": 0.015, "na": 6, "mg": 130, "k": 881, "vitc": 4.0, "ca": 142, "fe": 6.4, "zn": 3.3, "cu": 0.9, "p": 415,
+    "vitA": 4, "vitB12": 0.0, "vitD": 0.0, "vitE": 1.3, "vitK": 0.0, "b9": 180.0, "b2": 0.15, "b6": 0.0,
+    "leu": 1.588, "iso": 0.938, "val": 1.02, "lys": 1.392, "met": 0.27, "phe": 1.141, "thr": 0.777, "trp": 0.173, "his": 0.589
+  }
+]
